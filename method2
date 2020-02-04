@@ -1,0 +1,24 @@
+ int length_of_line=80;
+ int index_of_column;
+ int index_of_line;
+ char buffer_data_input[length_of_line];
+ fstream file_k_input;
+ file_k_input.open("data.txt",ios::in);
+ index_of_line=1;
+ do
+ {
+       file_k_input.getline(buffer_data_input,80);
+       istringstream delim_data_input(buffer_data_input);
+       string buffer_string_line;
+       index_of_column=1;
+       while(delim_data_input>>buffer_string_line)
+       {
+              if (index_of_column%2 == 1)
+                    dataSetX.push_back(stod(buffer_string_line));
+              else
+                    dataSetY.push_back(stod(buffer_string_line));
+              index_of_column++;
+       }
+       index_of_line++;
+ } while(!file_k_input.eof());
+ file_k_input.close();
