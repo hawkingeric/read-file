@@ -1,0 +1,26 @@
+ifstream in_source(source_file_full_path);
+                if(!in_source)
+                {
+                       cout<<"Cannot open the file!"<<endl;
+                       cin.get();
+                }
+                else
+                {
+                       while (!in_source.eof())
+                       {
+                               getline(in_source, name_source);
+		                       result_source = split(name_source, pattern_source);
+		                       if (name_source.empty() || stod(result_source[1]) == 0.0)
+                               {
+                                       continue;
+		                       }
+                               if (stod(result_source[0]) < source_data_min || stod(result_source[0]) > source_data_max)
+                               {
+                                      continue;
+                               }
+                              dataSetX_source.push_back(stod(result_source[0]));
+                              dataSetY_source.push_back(stod(result_source[1]));
+                      }
+                      in_source.close();
+	           }
+               NUMDATA_source=dataSetX_source.size();
